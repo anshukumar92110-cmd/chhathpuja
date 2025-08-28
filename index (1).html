@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shri Shri 108 Chhath Puja Samiti, Gangapur</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fdfdfd; }
+    header { background: orange; color:white; padding:20px; text-align:center; }
+    nav { background:#333; padding:10px; }
+    nav a { color:white; margin:0 10px; text-decoration:none; }
+    section { padding:20px; }
+    table { border-collapse:collapse; width:100%; margin-bottom:20px; }
+    table, th, td { border:1px solid #aaa; padding:8px; text-align:left; }
+    th { background:#eee; }
+    .summary { background:#fafafa; padding:15px; border:1px solid #ddd; margin-top:20px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Shri Shri 108 Chhath Puja Samiti, Gangapur</h1>
+</header>
+
+<nav>
+  <a href="#members">Members</a>
+  <a href="#donations">Donations</a>
+  <a href="#expenses">Expenses</a>
+  <a href="#announcements">Announcements</a>
+</nav>
+
+<section id="members">
+  <h2>Members</h2>
+  <table id="membersTable">
+    <tr><th>Name</th><th>Phone</th><th>Role</th></tr>
+    <tr><td>Example Member</td><td>9876543210</td><td>President</td></tr>
+  </table>
+</section>
+
+<section id="donations">
+  <h2>Donations</h2>
+  <table id="donationsTable">
+    <tr><th>Name</th><th>Amount</th><th>Pending Due</th></tr>
+    <tr><td>Example Member</td><td>1000</td><td>0</td></tr>
+  </table>
+  <div class="summary">
+    <strong>Total Donations:</strong> ₹<span id="totalDonations">0</span><br>
+    <strong>Total Due:</strong> ₹<span id="totalDue">0</span>
+  </div>
+</section>
+
+<section id="expenses">
+  <h2>Expenses</h2>
+  <table id="expensesTable">
+    <tr><th>Item</th><th>Amount</th></tr>
+    <tr><td>Tent & Decoration</td><td>5000</td></tr>
+    <tr><td>Lighting</td><td>3000</td></tr>
+  </table>
+  <div class="summary">
+    <strong>Total Expenses:</strong> ₹<span id="totalExpenses">0</span><br>
+    <strong>Balance (Donations - Expenses):</strong> ₹<span id="balance">0</span>
+  </div>
+</section>
+
+<section id="announcements">
+  <h2>Announcements</h2>
+  <ul>
+    <li>Chhath Puja will be held on 10th Nov.</li>
+  </ul>
+</section>
+
+<script>
+  function calculateSummary() {
+    // Donations
+    let donationRows = document.querySelectorAll("#donationsTable tr");
+    let totalDonations = 0, totalDue = 0;
+    for(let i=1;i<donationRows.length;i++){
+      let cells = donationRows[i].getElementsByTagName("td");
+      if(cells.length>0){
+        totalDonations += parseFloat(cells[1].innerText) || 0;
+        totalDue += parseFloat(cells[2].innerText) || 0;
+      }
+    }
+    document.getElementById("totalDonations").innerText = totalDonations;
+    document.getElementById("totalDue").innerText = totalDue;
+
+    // Expenses
+    let expenseRows = document.querySelectorAll("#expensesTable tr");
+    let totalExpenses = 0;
+    for(let i=1;i<expenseRows.length;i++){
+      let cells = expenseRows[i].getElementsByTagName("td");
+      if(cells.length>0){
+        totalExpenses += parseFloat(cells[1].innerText) || 0;
+      }
+    }
+    document.getElementById("totalExpenses").innerText = totalExpenses;
+
+    // Balance
+    document.getElementById("balance").innerText = totalDonations - totalExpenses;
+  }
+
+  calculateSummary();
+</script>
+
+</body>
+</html>
