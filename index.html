@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shri Shri 108 Chhath Puja Samiti, Gangapur</title>
+  <meta name="description" content="Official website for Shri Shri 108 Chhath Puja Samiti, Gangapur – members, donations, announcements, gallery and countdown."/>
+  <link rel="icon" href="logo.png"/>
+  <style>
+    :root{
+      --bg:#0f172a; /* slate-900 */
+      --panel:#111827; /* gray-900 */
+      --card:#1f2937; /* gray-800 */
+      --muted:#94a3b8; /* slate-400 */
+      --text:#e5e7eb; /* gray-200 */
+      --brand:#f59e0b; /* amber-500 */
+      --accent:#22c55e; /* green-500 */
+      --danger:#ef4444; /* red-500 */
+      --shadow:0 10px 30px rgba(0,0,0,.3)
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#0b1025,#111827 40%,#0b1025);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
+    a{color:inherit}
+    .wrap{max-width:1200px;margin:auto;padding:20px}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);padding:14px 16px;border-radius:18px;backdrop-filter:blur(6px);box-shadow:var(--shadow)}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand img{width:54px;height:54px;object-fit:contain;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:#fff}
+    h1{font-size:clamp(18px,3.2vw,28px);margin:0;letter-spacing:.3px}
+    .pill{font-size:12px;color:#111;background:var(--brand);padding:6px 10px;border-radius:999px;font-weight:700}
+
+    .grid{display:grid;gap:16px;margin-top:16px}
+    @media(min-width:1000px){.grid{grid-template-columns:1.2fr .8fr}}
+
+    .card{background:linear-gradient(180deg,#0b122a,#121b3b);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+    .card h2{margin:0 0 10px 0;font-size:18px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    input,select,button,textarea{background:#0b1025;color:var(--text);border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:12px;outline:none}
+    input[type="date"]{padding:8px 10px}
+    button{cursor:pointer;font-weight:600}
+    button.primary{background:var(--brand);color:#111;border:none}
+    button.ghost{background:transparent}
+    button.danger{background:var(--danger);border:none}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* Countdown */
+    .countdown{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .ticker{display:flex;gap:12px}
+    .tick{background:var(--card);border:1px solid rgba(255,255,255,.08);min-width:82px;padding:10px;border-radius:14px;text-align:center}
+    .tick .num{font-size:24px;font-weight:800}
+    .tick .lab{font-size:11px;color:var(--muted)}
+
+    /* Members */
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;margin-bottom:10px}
+    .table{width:100%;border-collapse:separate;border-spacing:0 10px}
+    .table thead th{font-size:12px;color:var(--muted);text-align:left;padding:4px 8px}
+    .table tbody tr{background:var(--card);border:1px solid rgba(255,255,255,.08)}
+    .table tbody td{padding:8px}
+    .table tbody tr td:first-child{border-top-left-radius:14px;border-bottom-left-radius:14px}
+    .table tbody tr td:last-child{border-top-right-radius:14px;border-bottom-right-radius:14px}
+    .avatar{width:44px;height:44px;border-radius:10px;object-fit:cover;background:#0b1025;border:1px solid rgba(255,255,255,.1)}
+    .right{justify-content:flex-end}
+    .totals{margin-top:8px;display:flex;gap:18px;justify-content:flex-end}
+
+    /* Slider */
+    .slider-wrap{overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,.08)}
+    .slider{display:flex;gap:12px;padding:12px;animation:scroll 30s linear infinite}
+    .slide{min-width:240px;background:linear-gradient(180deg,#0f1a3a,#18244f);padding:12px;border-radius:16px;border:1px solid rgba(255,255,255,.08);display:flex;gap:12px;align-items:center}
+    .slide img{width:48px;height:48px;border-radius:12px;border:1px solid rgba(255,255,255,.1);object-fit:cover}
+    @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* Announcements */
+    .ann li{background:var(--card);border:1px solid rgba(255,255,255,.08);padding:10px;border-radius:12px;margin:8px 0;display:flex;justify-content:space-between;gap:12px}
+    .ann .meta{font-size:12px;color:var(--muted)}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+    .gallery figure{margin:0;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden}
+    .gallery img{width:100%;height:150px;object-fit:cover;display:block}
+    .gallery figcaption{padding:8px;font-size:13px;color:var(--muted)}
+
+    footer{margin:20px 0;color:var(--muted);font-size:12px;text-align:center}
+
+    /* Print basics */
+    @media print{
+      header,.toolbar,.slider-wrap,.controls,.import-export,.admin{display:none}
+      body{background:#fff;color:#000}
+      .card{box-shadow:none;border:1px solid #ddd}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <!-- Replace logo.png with your official logo file -->
+        <img src="logo.png" alt="Chhath Puja Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'54\' height=\'54\'><rect width=\'100%\' height=\'100%\' fill=\'%23fff\'/><text x=\'50%\' y=\'55%\' font-size=\'10\' text-anchor=\'middle\' fill=\'%23000\'>LOGO</text></svg>'"/>
+        <div>
+          <h1>Shri Shri 108 Chhath Puja Samiti, Gangapur</h1>
+          <div class="muted">Official site • Members • Donations • Announcements • Memories</div>
+        </div>
+      </div>
+      <div class="row admin" id="adminGate">
+        <input id="adminKey" type="password" placeholder="Admin password"/>
+        <button class="primary" onclick="unlockAdmin()">Unlock</button>
+      </div>
+      <span class="pill" id="modePill">View-only</span>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Chhath Puja Countdown</h2>
+        <div class="countdown">
+          <div class="row controls">
+            <label class="muted">Target Date</label>
+            <input id="chhathDate" type="date"/>
+            <button class="ghost" onclick="setDefaultChhath()">Use 2025 date</button>
+          </div>
+          <div class="ticker" id="ticker">
+            <div class="tick"><div class="num" id="d">0</div><div class="lab">Days</div></div>
+            <div class="tick"><div class="num" id="h">0</div><div class="lab">Hours</div></div>
+            <div class="tick"><div class="num" id="m">0</div><div class="lab">Minutes</div></div>
+            <div class="tick"><div class="num" id="s">0</div><div class="lab">Seconds</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Quick Actions</h2>
+        <div class="row import-export">
+          <button onclick="exportJSON()">Export Data</button>
+          <label class="ghost" style="display:inline-flex;gap:8px;align-items:center;cursor:pointer">
+            <input id="importFile" type="file" accept="application/json" style="display:none" onchange="importJSON(event)"/>
+            <span class="pill">Import JSON</span>
+          </label>
+          <button class="danger" onclick="clearAll()">Clear Local Data</button>
+        </div>
+        <p class="muted">All changes save in your browser (localStorage). Use Export/Import for backup or moving to WordPress.</p>
+      </section>
+    </div>
+
+    <section class="card" id="membersCard">
+      <div class="toolbar">
+        <h2>Committee Members & Donations</h2>
+        <div class="row right">
+          <input id="search" placeholder="Search name / phone / role" oninput="renderMembers()"/>
+          <button class="primary" id="addRowBtn" disabled onclick="openMemberForm()">Add Member</button>
+        </div>
+      </div>
+
+      <!-- Member Table -->
+      <div style="overflow:auto">
+        <table class="table" id="membersTable">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Role</th>
+              <th>Donated (₹)</th>
+              <th>Target (₹)</th>
+              <th>Due (₹)</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <div class="totals">
+        <div class="muted">Total Donated: <b id="tDonate">0</b></div>
+        <div class="muted">Total Due: <b id="tDue">0</b></div>
+      </div>
+
+      <!-- Auto slider of members -->
+      <div class="slider-wrap" style="margin-top:16px">
+        <div class="slider" id="slider"></div>
+      </div>
+
+      <!-- Member Modal (inline simple form) -->
+      <div id="memberForm" class="card" style="display:none;margin-top:12px">
+        <h3 id="formTitle">Add Member</h3>
+        <div class="row" style="gap:12px">
+          <input id="fImage" placeholder="Image URL (optional)" style="flex:1 1 220px"/>
+          <input id="fName" placeholder="Full Name" style="flex:1 1 200px"/>
+          <input id="fPhone" placeholder="Phone" style="flex:1 1 160px"/>
+          <input id="fRole" placeholder="Role" style="flex:1 1 140px"/>
+          <input id="fDonate" type="number" min="0" step="1" placeholder="Donated ₹" style="width:130px"/>
+          <input id="fTarget" type="number" min="0" step="1" placeholder="Target ₹" style="width:130px"/>
+          <button class="primary" onclick="saveMember()">Save</button>
+          <button class="ghost" onclick="closeMemberForm()">Cancel</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Announcements -->
+    <section class="card">
+      <div class="toolbar">
+        <h2>Announcements</h2>
+        <div class="row right">
+          <input id="annTitle" placeholder="Announcement title" style="min-width:220px"/>
+          <input id="annText" placeholder="Short message" style="min-width:260px"/>
+          <button id="addAnnBtn" class="primary" disabled onclick="addAnnouncement()">Add</button>
+        </div>
+      </div>
+      <ul class="ann" id="annList"></ul>
+    </section>
+
+    <!-- Gallery -->
+    <section class="card">
+      <div class="toolbar">
+        <h2>Photo Memories</h2>
+        <div class="row right">
+          <input id="galUrl" placeholder="Image URL"/>
+          <input id="galCap" placeholder="Caption (optional)"/>
+          <button id="addGalBtn" class="primary" disabled onclick="addPhoto()">Add Photo</button>
+        </div>
+      </div>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <footer>
+      © <span id="yr"></span> Shri Shri 108 Chhath Puja Samiti, Gangapur • Built for committee use. Data is stored locally in your browser.
+    </footer>
+  </div>
+
+  <script>
+    /* ---------------------- Storage & State ---------------------- */
+    const LS_KEY = 'chhath:data:v1';
+    const state = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+    if(!state.members) state.members = [];
+    if(!state.ann) state.ann = [];
+    if(!state.gallery) state.gallery = [];
+    if(!state.date) state.date = '';
+    let editIndex = null;
+    let isAdmin = false;
+
+    function save(){ localStorage.setItem(LS_KEY, JSON.stringify(state)); render(); }
+
+    /* ---------------------- Admin Gate ---------------------- */
+    function unlockAdmin(){
+      const key = document.getElementById('adminKey').value.trim();
+      // Set your own strong password here
+      if(key === 'admin'){
+        isAdmin = true;
+        document.getElementById('modePill').textContent = 'Admin mode';
+        document.getElementById('addRowBtn').disabled = false;
+        document.getElementById('addAnnBtn').disabled = false;
+        document.getElementById('addGalBtn').disabled = false;
+        document.getElementById('adminGate').style.visibility = 'hidden';
+      } else {
+        alert('Incorrect password');
+      }
+    }
+
+    /* ---------------------- Countdown ---------------------- */
+    const dEl = document.getElementById('d'), hEl = document.getElementById('h'), mEl = document.getElementById('m'), sEl = document.getElementById('s');
+    const dateInput = document.getElementById('chhathDate');
+    function setDefaultChhath(){ dateInput.value = '2025-10-26'; state.date = dateInput.value; save(); }
+    function startTimer(){
+      setInterval(() => {
+        if(!state.date){dEl.textContent=hEl.textContent=mEl.textContent=sEl.textContent='0';return}
+        const end = new Date(state.date + 'T00:00:00');
+        const now = new Date();
+        const diff = end - now;
+        if(diff <= 0){ dEl.textContent='0';hEl.textContent='0';mEl.textContent='0';sEl.textContent='0'; return }
+        const d = Math.floor(diff/86400000);
+        const h = Math.floor(diff%86400000/3600000);
+        const m = Math.floor(diff%3600000/60000);
+        const s = Math.floor(diff%60000/1000);
+        dEl.textContent=d; hEl.textContent=h; mEl.textContent=m; sEl.textContent=s;
+      }, 1000);
+    }
+    dateInput.addEventListener('change', e=>{ state.date = e.target.value; save(); });
+
+    /* ---------------------- Members ---------------------- */
+    const tbody = document.getElementById('tbody');
+    const slider = document.getElementById('slider');
+    const tDonate = document.getElementById('tDonate');
+    const tDue = document.getElementById('tDue');
+    const search = document.getElementById('search');
+
+    function openMemberForm(i=null){
+      editIndex = i;
+      const f = ['fImage','fName','fPhone','fRole','fDonate','fTarget'].map(id=>document.getElementById(id));
+      if(i!==null){
+        const r = state.members[i];
+        f[0].value=r.img||''; f[1].value=r.name||''; f[2].value=r.phone||''; f[3].value=r.role||''; f[4].value=r.donated||0; f[5].value=r.target||0;
+        document.getElementById('formTitle').textContent='Edit Member';
+      } else {
+        f.forEach(el=>el.value='');
+        document.getElementById('formTitle').textContent='Add Member';
+      }
+      document.getElementById('memberForm').style.display='block';
+      document.getElementById('membersCard').scrollIntoView({behavior:'smooth'});
+    }
+    function closeMemberForm(){ document.getElementById('memberForm').style.display='none'; editIndex=null; }
+
+    function saveMember(){
+      const img = document.getElementById('fImage').value.trim();
+      const name = document.getElementById('fName').value.trim();
+      const phone = document.getElementById('fPhone').value.trim();
+      const role = document.getElementById('fRole').value.trim();
+      const donated = Math.max(0, Number(document.getElementById('fDonate').value||0));
+      const target = Math.max(0, Number(document.getElementById('fTarget').value||0));
+      if(!name){ alert('Name required'); return }
+      const rec = {img,name,phone,role,donated,target};
+      if(editIndex!==null) state.members[editIndex]=rec; else state.members.push(rec);
+      closeMemberForm(); save();
+    }
+
+    function delMember(i){ if(confirm('Delete this member?')){ state.members.splice(i,1); save(); } }
+
+    function renderMembers(){
+      const q = search.value.trim().toLowerCase();
+      const rows = state.members
+        .filter(r => !q || [r.name,r.phone,r.role].some(v => (v||'').toLowerCase().includes(q)))
+        .map((r,i)=> ({...r, due: Math.max(0,(r.target||0)-(r.donated||0)), idx: i}));
+
+      // Body
+      tbody.innerHTML = rows.map(r=>`
+        <tr>
+          <td><img class="avatar" src="${r.img||''}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'44\' height=\'44\'><rect width=\'100%\' height=\'100%\' fill=\'%23111827\'/></svg>'" alt=""/></td>
+          <td>${esc(r.name)}</td>
+          <td>${esc(r.phone||'')}</td>
+          <td>${esc(r.role||'')}</td>
+          <td>₹ ${num(r.donated)}</td>
+          <td>₹ ${num(r.target)}</td>
+          <td><b>₹ ${num(r.due)}</b></td>
+          <td>
+            <button ${!isAdmin?'disabled':''} onclick="openMemberForm(${r.idx})">Edit</button>
+            <button class="danger" ${!isAdmin?'disabled':''} onclick="delMember(${r.idx})">Delete</button>
+          </td>
+        </tr>`).join('');
+
+      // Totals
+      const totals = rows.reduce((a,r)=>{ a.d+=r.donated||0; a.u+=r.due||0; return a }, {d:0,u:0});
+      tDonate.textContent = num(totals.d);
+      tDue.textContent = num(totals.u);
+
+      // Slider (duplicate list to create seamless loop)
+      const slides = state.members.map(r=>`
+        <div class="slide">
+          <img src="${r.img||''}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\'><rect width=\'100%\' height=\'100%\' fill=\'%23111827\'/></svg>'"/>
+          <div>
+            <div style="font-weight:700">${esc(r.name)}</div>
+            <div class="muted">${esc(r.role||'Member')}</div>
+          </div>
+        </div>`).join('');
+      slider.innerHTML = slides + slides; // double for smooth loop
+    }
+
+    /* ---------------------- Announcements ---------------------- */
+    const annList = document.getElementById('annList');
+    function addAnnouncement(){
+      const title = document.getElementById('annTitle').value.trim();
+      const text = document.getElementById('annText').value.trim();
+      if(!title) return alert('Title required');
+      state.ann.unshift({title,text,ts:Date.now()});
+      document.getElementById('annTitle').value='';
+      document.getElementById('annText').value='';
+      save();
+    }
+    function delAnn(i){ if(confirm('Delete announcement?')){ state.ann.splice(i,1); save(); } }
+    function renderAnn(){
+      annList.innerHTML = state.ann.map((a,i)=>`
+        <li>
+          <div>
+            <div style="font-weight:700">${esc(a.title)}</div>
+            <div class="muted">${esc(a.text||'')}</div>
+            <div class="meta">${new Date(a.ts).toLocaleString()}</div>
+          </div>
+          <div>
+            <button class="danger" ${!isAdmin?'disabled':''} onclick="delAnn(${i})">Remove</button>
+          </div>
+        </li>`).join('');
+    }
+
+    /* ---------------------- Gallery ---------------------- */
+    const gallery = document.getElementById('gallery');
+    function addPhoto(){
+      const url = document.getElementById('galUrl').value.trim();
+      const cap = document.getElementById('galCap').value.trim();
+      if(!url) return alert('Image URL required');
+      state.gallery.unshift({url,cap});
+      document.getElementById('galUrl').value='';
+      document.getElementById('galCap').value='';
+      save();
+    }
+    function delPhoto(i){ if(confirm('Delete photo?')){ state.gallery.splice(i,1); save(); } }
+    function renderGallery(){
+      gallery.innerHTML = state.gallery.map((g,i)=>`
+        <figure>
+          <img src="${g.url}" alt=""/>
+          <figcaption>${esc(g.cap||'')}</figcaption>
+          <div style="display:flex;gap:8px;padding:8px">
+            <button class="danger" ${!isAdmin?'disabled':''} onclick="delPhoto(${i})">Delete</button>
+            <a href="${g.url}" target="_blank"><button class="ghost">Open</button></a>
+          </div>
+        </figure>`).join('');
+    }
+
+    /* ---------------------- Import / Export ---------------------- */
+    function exportJSON(){
+      const blob = new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'chhath-data.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+    function importJSON(e){
+      const f = e.target.files[0]; if(!f) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try{ const data = JSON.parse(reader.result);
+          if(data.members) state.members = data.members;
+          if(data.ann) state.ann = data.ann;
+          if(data.gallery) state.gallery = data.gallery;
+          if(data.date) state.date = data.date;
+          save();
+        } catch(err){ alert('Invalid JSON'); }
+      };
+      reader.readAsText(f);
+    }
+    function clearAll(){ if(confirm('Clear all locally saved data?')){ localStorage.removeItem(LS_KEY); location.reload(); } }
+
+    /* ---------------------- Utils & Render ---------------------- */
+    const esc = (s)=> (s||'').replace(/[&<>\"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+    const num = (n)=> Number(n||0).toLocaleString('en-IN');
+
+    function render(){
+      // date
+      if(state.date){ document.getElementById('chhathDate').value = state.date }
+      renderMembers();
+      renderAnn();
+      renderGallery();
+    }
+
+    // Seed demo data if first run
+    if(!localStorage.getItem(LS_KEY)){
+      state.members = [
+        {name:'Pradeep Kumar', phone:'9800xxxx12', role:'President', donated:5000, target:10000, img:''},
+        {name:'Sanjana Devi', phone:'9800xxxx34', role:'Treasurer', donated:8000, target:8000, img:''},
+        {name:'Ravi Raj', phone:'9800xxxx56', role:'Member', donated:1200, target:3000, img:''},
+        {name:'Anita Kumari', phone:'9800xxxx78', role:'Volunteer', donated:600, target:2000, img:''}
+      ];
+      state.ann = [
+        {title:'Prabhat Pheri starts', text:'Join 5:00 AM at Ghat from Oct 20', ts: Date.now()-86400000},
+        {title:'Cleanliness Drive', text:'Volunteer meet on Oct 15, 7 AM', ts: Date.now()-2*86400000}
+      ];
+      state.gallery = [
+        {url:'https://images.unsplash.com/photo-1623943642802-2c4d1dfcd551?q=80&w=1200&auto=format&fit=crop', cap:'Morning Arghya (sample)'}
+      ];
+      state.date = '';
+      save();
+    } else { render(); }
+
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    startTimer();
+  </script>
+</body>
+</html>
